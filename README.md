@@ -2,16 +2,16 @@
 
 ## Commands ghci
 
-`:load` - load files .hs
-`:realod` - reload files
-`:quit` - quit REPL
-`:cd` -  change of directory
+- `:load` - load files .hs
+- `:realod` - reload files
+- `:quit` - quit REPL
+- `:cd` -  change of directory
 
 
 ## Comments
 
-Single line --
-Multilinea {-   -}
+Single line `--`
+Multilinea `{-   -}`
 
 ## where keyword
 
@@ -46,13 +46,6 @@ Then 20
 
 ### Define a function that substract 12 from half its argument
 
-## Sumary
-
-1. Variables store values (which can be any arbitrary Haskell expression).
-2. Variables do not change within a scope.
-3. Functions help you write reusable code.
-4. Functions can accept more than one parameter.
-
 ```
 substract12 x = half x - 12
 ```
@@ -62,3 +55,10 @@ substract12 x = half x - 12
 ```
 volume h w l = h * w * l
 ```
+
+## Sumary
+
+1. Variables store values (which can be any arbitrary Haskell expression).
+2. Variables do not change within a scope.
+3. Functions help you write reusable code.
+4. Functions can accept more than one parameter.
