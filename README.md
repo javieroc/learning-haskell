@@ -26,6 +26,14 @@ heron a b c = sqrt (s * (s - a) * (s - b) * (s - c))
     s = (a + b + c) / 2
 ```
 
+## Sumary
+
+1. Variables store values (which can be any arbitrary Haskell expression).
+2. Variables do not change within a scope.
+3. Functions help you write reusable code.
+4. Functions can accept more than one parameter.
+
+
 ## Exercises
 
 ```
@@ -35,7 +43,7 @@ square x = x * x
 half x = x / 2
 ```
 
-### Explain how works quadruple 5:
+Explain how works quadruple 5:
 
 ```
 Replace quadruple 5 by double (double 5)
@@ -45,25 +53,17 @@ Then 2 * 10
 Then 20
 ```
 
-### Define a function that substract 12 from half its argument
+Define a function that substract 12 from half its argument
 
 ```
 substract12 x = half x - 12
 ```
 
-## Write a function to calculate the volume of a box
+Write a function to calculate the volume of a box
 
 ```
 volume h w l = h * w * l
 ```
-
-## Sumary
-
-1. Variables store values (which can be any arbitrary Haskell expression).
-2. Variables do not change within a scope.
-3. Functions help you write reusable code.
-4. Functions can accept more than one parameter.
-
 
 # Chapter 2
 
@@ -127,4 +127,107 @@ Solutions:
 3. `f :: Bool -> Bool -> Bool`
 4. `g :: Int -> Int`
 
+
+# Chapter 3
+
+## Lists
+
+The elements of a list must have the same types.
+
+```
+let numbers = [1,2,3,4]
+let truths = [True, Flase, True]
+let strings = ["Hello", "all", "the", "world"]
+```
+
+And also we can use the operator `(:)` to prepend items.
+
+```
+Prelude> let numbers = [1,2,3,4]
+Prelude> 0:[1,2,3,4]
+[0,1,2,3,4]
+Prelude 2:2:1:0:numbers
+[2,2,1,0,1,2,3,4]
+```
+
+Strings are just lists
+
+```
+Prelude> "hey" == ['h', 'e', 'y']
+True
+```
+
+List of lists
+
+```
+let listOfLists = [[1,2], [3,4], [5,6]]
+```
+
+## Tuples
+
+- Fixed number of elements (immutable)
+- The elements of a tuple do not need to be all of the same type.
+
+Examples:
+
+```
+(True, 1)
+("Hello world", False)
+(4, 5, "Six", True, 'b', [1,2,3])
+```
+
+We can build list of tuples and tuples with lists. Examples:
+
+```
+[(1,2), (3,4), (5,6)]
+([1,2], [True, False], "Hello world")
+([1,2], [True, False], "Hello world", False)
+```
+
+Retrieving values
+
+For a 2-tuple
+
+- `fst`: first element of a tuple
+- `snd`: retrieve the second element of a tuple
+
+```
+Prelude> fst (1, True)
+1
+Prelude> snd (1, True)
+True
+
+Prelude> :t fst
+fst :: (a, b) -> a
+Prelude> :t snd
+snd :: (a, b) -> b
+```
+
+
+For lists, the functions `head` and `tail` are analogous to `fst` and `snd`. `head`
+evaluates to the first element of the list and `tail` gives the rest of the list.
+
+```
+Prelude> head [1,2,3,4]
+1
+Prelude> tail [1,2,3,4]
+[2,3,4]
+
+Prelude> :t head
+head :: [a] -> a
+Prelude> :t tail
+tail :: [a] -> [a]
+```
+
+## Summary
+
+1. List are defined by square brakets and commas: `[1,2,3]`.
+  - List can contain anything as long as all elements of the list are of the same type.
+  - List can also be build by the cons operator `(:)`, but you can only cons things onto list.
+2. Tuples are defined by parentheses and commas: `(1, True, "Hello")`.
+  - Tuples can contain anything, even things of different types.
+  - The length of a tuple is encoded in its type; tuples with different lengths will have different types.
+3. List and tuples can be combined in any number of ways.
+
+## Exercices
 
