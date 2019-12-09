@@ -229,5 +229,88 @@ tail :: [a] -> [a]
   - The length of a tuple is encoded in its type; tuples with different lengths will have different types.
 3. List and tuples can be combined in any number of ways.
 
+
+## Numeric types
+
+*Num* is a **typeclass** - a group of types which includes all types which are regarded as numbers.
+The `(Num a) =>` part of the signature restricts `a` to numbers types.
+
+**Numeric types:**
+
+- Int
+- Integer
+- Double
+- Float
+
+**Typeclasses:**
+
+- Num
+- Fractional
+- Integral
+
+
+Note: in some cases we're going to need change from a monomorphic type to a polymorphic type.
+Example of this is, if we try to do a `(/)` between a *Num* with a *Int*, so we should use in this case
+a function like `fromIntegral` to convert an *Integral* into a polymorphic value.
+
+```
+Prelude> 4 / fromIntegral (length [1,2,3])
+1.3333333333333333
+```
+
+Polymorphics functions: `(+)`, `(/)`, `(==)`.
+`(==)` compares two values of the same type, which must belong to the class `Eq`.
+
+
 ## Exercices
+
+Problems
+
+1. Would the following piece of Haskell work: `3:[True, False]`.
+2. Write a function `cons8` that takes a list as an argument and conses `8` at the beginning on to it.
+3. Adapt the above function in a way that `8` is at the end of the list.
+4. Write a function that takes two arguments a list and a thing, and conses the thing on to the list.
+
+Solutions
+
+1. Not. Because we should conses things onto a list with the same type.
+
+```
+cons8 :: (Num a) => [a] -> [a]
+cons8 l = 8:l
+
+cons8end :: (Num a) => [a] -> [a]
+cons8end l = l ++ [8]
+
+consThing :: [a] -> a -> [a]
+consThing list thing = thing:list
+```
+
+Problems
+
+1. Which of these are valid Haskell and which are not? Rewrite in cons notation.
+  a. `[1,2,3,[]]`
+  b. `[1,[2,3],4]`
+  c. `[[1,2,3],[]]`
+2. Which of these are valid Haskell, and which are not? Rewrite in comma and bracket notation.
+  a. `[]:[[1,2,3],[4,5,6]]`
+  b. `[]:[]`
+  c. `[]:[]:[]`
+  d. `[1]:[]:[]`
+  c. `["hi"]:[1]:[]`
+3. Can Haskell have lists of lists of lists? Why or why not?
+4. Why is the following list invalid in Haskell?
+  - `[[1,2],3,[4,5]]`
+
+Solutions
+
+1. Just the third one is valid. Cons notation `[1,2,3]:[[]]` or `[1,2,3]:[]:[]`
+2. Results:
+  a. `[[],[1,2,3],[4,5,6]]`
+  b. `[[]]`
+  c. `[[],[]]`
+  d. `[[1],[]]`
+  e. Invalid because we can't have a list with different types inside.
+3. Yep `[[[1,2], [3,4], [5,6]],[[7,8], [9, 10]]]` because it's just `[[[a]]]` type.
+4. It's invalid because we can not have a mixed types into a list, in this case we have a list of numbers and a single number.
 
