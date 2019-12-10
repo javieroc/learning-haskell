@@ -314,3 +314,71 @@ Solutions
 3. Yep `[[[1,2], [3,4], [5,6]],[[7,8], [9, 10]]]` because it's just `[[[a]]]` type.
 4. It's invalid because we can not have a mixed types into a list, in this case we have a list of numbers and a single number.
 
+
+Problems
+
+1. Write down the 3-tuple whose first element is 4, second element is "hello" and third element is True.
+2. Which of the following are valid tuples?
+  a. `(4, 4)`
+  b. `(4, "hello")`
+  c. `(True, "Blah", "foo")`
+  d. `()`
+3. Lists can be built by consing new elements onto them. Cons a number onto a list of numbers, you will get back a list of numbers.
+  There is no such way to build up tuples.
+  a. Why do you think that is?
+  b. For the sake of argument, say that there was such a function. What would you get if you "consed" something on a tuple?
+
+Solutions
+
+1. `(4, "hello", True)`.
+2. results:
+  a. valid
+  b. valid
+  c. valid
+  d. weird but valid
+3. ?
+
+Problems
+
+Which of these are valid Haskell, and why?
+  1. `1:(2,3)`
+  2. `(2,4):(2,3)`
+  3. `(2,4):[]`
+  4. `[(2,4),(5,5),('a','b')]`
+  5. `([2,4],[2,2])`
+
+Solutions
+
+1. Not valid. You can't cons elements onto a tuple.
+2. Not valid. Cons operator `(:)` need a list as second argument.
+3. Valid.
+4. Not valid. You can't have a list of tuples with different signature.
+5. Valid.
+
+Problems
+
+1. Use a combination of fst and snd to extract the 4 from the tuple `(("Hello", 4), True)`.
+2. Normal chess notation is somewhat different to ours: it numbers the rows from 1-8 and the columns a-h; and the column label is customarily given first. Could we label a specific point with a character and a number, like ('a', 4)? What important difference with lists does this illustrate?
+3. Write a function which returns the head and the tail of a list as the first and second elements of a tuple.
+4. Use head and tail to write a function which gives the fifth element of a list. Then, make a critique of it, pointing out any annoyances and pitfalls you notice.
+
+Solutions
+
+1. `snd (fst (("Hello", 4), True))`.
+2. If we use list we can't use differet types into them, like Char and Num.
+3. `headTail list = (head list, tail list)`
+4. `fifthElement list = head (tail (tail (tail (tail list))))`
+
+Problems
+
+Give type signatures for the following functions:
+
+1. The solution to the third exercise of the previous section ("... a function which returns the head and the tail of a list as the first and second elements of a tuple").
+2. The solution to the fourth exercise of the previous section ("... a function which gives the fifth element of a list").
+3. h x y z = chr (x - 2) (remember we discussed chr in the previous chapter).
+
+Solutions
+
+1. `headTail :: [a] -> (a, [a])`
+2. `fifthElement :: [a] -> a`
+3. `h :: Int -> p1 -> p2 -> Char`
