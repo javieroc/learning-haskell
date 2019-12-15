@@ -467,3 +467,59 @@ root a b c =
     in ((-b + sdisc) / twice_a, (-b - sdisc) / twice_a)
 ```
 
+## Function composition
+
+Function composition means applying one function to a value and then appliying another
+function to the result.
+
+Example:
+
+```
+f x = x + 3
+square x = x ^ 2
+
+Prelude> squere (f 1)
+16
+Prelude> f (square 1)
+4
+```
+
+The composition of two function results in a function in its own right.
+
+```
+squareOfF x = square (f x)
+fOfSquare x = f (square x)
+```
+
+Using the function composition operator `(.)`
+
+```
+squareOfF x = (square . f) x
+fOfSquare x = (f . square) x
+
+(f . g) x = f (g x)
+```
+
+## Prelude and libraries
+
+Prelude is the core library loaded by default in every haskell program.
+GHC includes a large set of core libraries, but only Prelude is loaded automatically.
+The other libraries are available as modules that you can import into your program. Example:
+
+```
+import Data.List
+testPermutation = permutations "Prelude"
+```
+
+Some Prelude functions:
+
+- `words`: breaks down a string in whitespace delimited words, returning a list of strings.
+- `reverse`: reverses a list
+- `unwords`: does the opposite of `words`
+
+Example:
+
+```
+revWords :: String -> String
+revWords input = (unwords . reverse . words) input
+```
