@@ -382,3 +382,88 @@ Solutions
 1. `headTail :: [a] -> (a, [a])`
 2. `fifthElement :: [a] -> a`
 3. `h :: Int -> p1 -> p2 -> Char`
+
+
+# Chapter 4
+
+## Conditional expressions *if...then...else*
+
+Example:
+
+```
+mySignum x =
+    if x < 0
+        then -1
+        else if x > 0
+            then 1
+            else 0
+```
+
+Haskell always requires both then and an else clauses. The expression returned in each case
+*then/else* must be a value of the same type.
+
+Functions defined with `if / then / else` could be defined using guards as well.
+
+Example:
+
+```
+mySignumGuards x
+    | x < 0 -1
+    | x > 0 1
+    | otherwise 0
+```
+
+## Introducing patter matching
+
+Example:
+
+```
+pts :: Int -> Int
+pts 1 = 10
+pts 2 = 6
+pts 3 = 4
+pts 4 = 3
+pts 5 = 2
+pts 6 = 1
+pts _ = 0
+```
+
+This feature of haskell is called pattern matching.
+When we call `pts`, the argument is matched againts the numbers on the left side of the equations.
+The matching is done in order we wrote the equations.
+
+**Tuple and list patterns**
+
+Examples:
+
+```
+fst' :: (a, b) -> a
+fst' (x, _) = x
+
+snd' :: (a, b) -> b
+snd' (_, x) = x
+
+head :: [a] -> a
+head (x:_) = x
+head [] = error "Prelude.head: empty list"
+
+tail :: [a] -> [a]
+tail (_:xs) = xs
+tail [] = error "Prelude.head: empty list"
+```
+
+## Let bindings
+
+Example of use `let / in`
+
+```
+root a b c =
+    ((-b + sqrt(b * b - 4 * a * c)) / (2 * a),
+    (-b - sqrt(b * b - 4 * a * c)) / (2 * a))
+
+root a b c =
+    let sdisc = sqrt(b * b - 4 * a * c)
+        twice_a = 2 * a
+    in ((-b + sdisc) / twice_a, (-b - sdisc) / twice_a)
+```
+

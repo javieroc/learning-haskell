@@ -19,5 +19,5 @@ volume h w l = h * w * l
 
 -- Use of where keyword
 heron a b c = sqrt (s * (s - a) * (s - b) * (s - c))
-    where
-    s = (a + b + c) / 2
+  where
+  s = (a + b + c) / 2
